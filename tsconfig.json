@@ -20,6 +20,37 @@
         "emitDecoratorMetadata": true,
         "baseUrl": ".",
         "paths": {
+            "red-agate-util": [
+                "../red-agate-util"
+            ],
+            "red-agate-svg-canvas": [
+                "../red-agate-svg-canvas"
+            ],
+            "red-agate-math": [
+                "../red-agate-math"
+            ],
+            "red-agate": [
+                "../red-agate"
+            ],
+            "red-agate-barcode": [
+                "../red-agate-barcode"
+            ],
+
+            "red-agate-util/*": [
+                "../red-agate-util/"
+            ],
+            "red-agate-svg-canvas/*": [
+                "../red-agate-svg-canvas/"
+            ],
+            "red-agate-math/*": [
+                "../red-agate-math/"
+            ],
+            "red-agate/*": [
+                "../red-agate/"
+            ],
+            "red-agate-barcode/*": [
+                "../red-agate-barcode/"
+            ],
         },
         // "traceResolution": true,
         "types": ["node", "jasmine"],

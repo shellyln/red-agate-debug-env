@@ -55,7 +55,7 @@ return [{
 
             // resolve linked modules sourcemap.
             devtoolModuleFilenameTemplate: function(info) {
-                var resourcePath = info.resourcePath.replace(/^\.\.\/red-agate/, './node_modules/red-agate');
+                var resourcePath = info.resourcePath.replace(/^\.\.\/red-agate/, './../red-agate');
                 return 'webpack:///' + resourcePath;
             },
         },
@@ -64,11 +64,11 @@ return [{
         // resolve linked modules bin paths.
         resolve: {
             alias: {
-                "red-agate-util": path.resolve(__dirname, "node_modules/red-agate-util/"),
-                "red-agate-svg-canvas": path.resolve(__dirname, "node_modules/red-agate-svg-canvas/"),
-                "red-agate-math": path.resolve(__dirname, "node_modules/red-agate-math/"),
-                "red-agate": path.resolve(__dirname, "node_modules/red-agate/"),
-                "red-agate-barcode": path.resolve(__dirname, "node_modules/red-agate-barcode/"),
+                "red-agate-util": path.resolve(__dirname, "../red-agate-util/"),
+                "red-agate-svg-canvas": path.resolve(__dirname, "../red-agate-svg-canvas/"),
+                "red-agate-math": path.resolve(__dirname, "../red-agate-math/"),
+                "red-agate": path.resolve(__dirname, "../red-agate/"),
+                "red-agate-barcode": path.resolve(__dirname, "../red-agate-barcode/"),
             },
             extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
             modules: [path.resolve(__dirname, "node_modules"), "node_modules"],
