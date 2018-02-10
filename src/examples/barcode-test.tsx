@@ -52,7 +52,7 @@ export let barcodeTestHandler: AwsLambda = (event: any, context, callback) => Re
                         <GridLine endX={210} endY={297} bleed={0} lineWidth={0.1} stroke/>
                     </If>
 
-                    <PrinterMarks x={15} y={20} width={100} height={130}/>
+                    <PrinterMarks x={15} y={20} width={100} height={130} hFold={[10, 20, 30]} vFold={[25, 15, 5]} />
 
                     <Qr x={15} y={5}
                         data="Hello" />

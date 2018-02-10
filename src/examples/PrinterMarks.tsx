@@ -35,10 +35,8 @@ export interface PrinterMarksProps extends ShapeProps {
     centerMarks?: boolean;
     centerMarkArmLength?: number;
     centerMarkArmMargin?: number;
-    hFold?: number;
-    hFoldOffsets?: number[];
-    vFold?: number;
-    vFoldOffsets?: number[];
+    hFold?: number[];
+    vFold?: number[];
 }
 
 export const printerMarksDefault: PrinterMarksProps = Object.assign({}, shapePropsDefault, {
@@ -56,7 +54,7 @@ export const printerMarksDefault: PrinterMarksProps = Object.assign({}, shapePro
     eastBleed: 3,
     westBleed: 3,
     centerMarks: true,
-    centerMarkArmLength: 12,
+    centerMarkArmLength: 15,
     centerMarkArmMargin: 3,
 });
 
@@ -144,6 +142,28 @@ export class PrinterMarks extends Shape<PrinterMarksProps> {
             c.lineTo(        - (p.westBleed as number) - (p.centerMarkArmMargin as number), p.height / 2 + (p.centerMarkArmLength as number) / 2);
             c.moveTo(p.width + (p.eastBleed as number) + (p.centerMarkArmMargin as number), p.height / 2 - (p.centerMarkArmLength as number) / 2);
             c.lineTo(p.width + (p.eastBleed as number) + (p.centerMarkArmMargin as number), p.height / 2 + (p.centerMarkArmLength as number) / 2);
+        }
+
+        if (p.hFold) {
+            let x = 0;
+            for (const dx of p.hFold) {
+                x += dx;
+                c.moveTo(x,          - (p.northBleed as number)                               );
+                c.lineTo(x,          - (p.northBleed as number) - (p.cropMarkLength as number));
+                c.moveTo(x, p.height + (p.southBleed as number)                               );
+                c.lineTo(x, p.height + (p.southBleed as number) + (p.cropMarkLength as number));
+            }
+        }
+
+        if (p.vFold) {
+            let y = 0;
+            for (const dy of p.vFold) {
+                y += dy;
+                c.moveTo(        - (p.westBleed as number)                               , y);
+                c.lineTo(        - (p.westBleed as number) - (p.cropMarkLength as number), y);
+                c.moveTo(p.width + (p.eastBleed as number)                               , y);
+                c.lineTo(p.width + (p.eastBleed as number) + (p.cropMarkLength as number), y);
+            }
         }
 
         return ``;
