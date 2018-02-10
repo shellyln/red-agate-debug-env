@@ -26,6 +26,7 @@ import { Itf }             from 'red-agate-barcode/modules/barcode/Itf';
 import { JapanPostal }     from 'red-agate-barcode/modules/barcode/JapanPostal';
 import { Nw7 }             from 'red-agate-barcode/modules/barcode/Nw7';
 import { Qr }              from 'red-agate-barcode/modules/barcode/Qr';
+import { PrinterMarks }    from './PrinterMarks';
 
 
 
@@ -50,6 +51,8 @@ export let barcodeTestHandler: AwsLambda = (event: any, context, callback) => Re
                         <Rect x={0} y={0} width={210} height={297} lineWidth={0.5} stroke/>
                         <GridLine endX={210} endY={297} bleed={0} lineWidth={0.1} stroke/>
                     </If>
+
+                    <PrinterMarks x={15} y={20} width={100} height={130}/>
 
                     <Qr x={15} y={5}
                         data="Hello" />
