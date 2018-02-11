@@ -1,13 +1,13 @@
 
-import * as RedAgate            from 'red-agate/modules/red-agate';
-
-import { billngReportHandler, BillingStatement } from './examples/billing';
+import * as RedAgate             from 'red-agate/modules/red-agate';
+import { App }                   from 'red-agate/modules/red-agate/app';
+import { billngReportHandler,
+         BillingStatement }      from './examples/billing';
 import { default as billngData } from './examples/billing.data';
-import { kanbanReportHandler } from './examples/kanban';
+import { kanbanReportHandler }   from './examples/kanban';
 import { default as kanbanData } from './examples/kanban.data';
-import { fbaA4ReportHandler } from './examples/fba-a4';
-import { barcodeTestHandler } from './examples/barcode-test';
-import { App } from './examples/app';
+import { fbaA4ReportHandler }    from './examples/fba-a4';
+import { barcodeTestHandler }    from './examples/barcode-test';
 
 
 // tslint:disable-next-line:no-eval

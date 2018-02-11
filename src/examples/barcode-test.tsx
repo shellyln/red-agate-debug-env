@@ -26,8 +26,8 @@ import { Itf }             from 'red-agate-barcode/modules/barcode/Itf';
 import { JapanPostal }     from 'red-agate-barcode/modules/barcode/JapanPostal';
 import { Nw7 }             from 'red-agate-barcode/modules/barcode/Nw7';
 import { Qr }              from 'red-agate-barcode/modules/barcode/Qr';
-import { AwsLambda }       from './app';
-import { PrinterMarks }    from './PrinterMarks';
+import { AwsLambda }       from 'red-agate/modules/red-agate/app';
+import { PrinterMarks }    from 'red-agate/modules/red-agate/printing';
 
 
 
