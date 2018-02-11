@@ -13,26 +13,57 @@ import { barcodeTestHandler }    from './examples/barcode-test';
 // tslint:disable-next-line:no-eval
 const requireDynamic = eval("require");
 
-const data = kanbanData;
-const handler = barcodeTestHandler;
-
-// handler(data, {} as any, (error, result) => {
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         const fs = require('fs');
-//         if (!fs.existsSync('./debug')) {
-//             fs.mkdirSync('./debug');
-//         }
-//         fs.writeFileSync('./debug/index.html', result);
-//     }
-// });
+let handler = barcodeTestHandler;
+let data: any = kanbanData;
 
 
-App
-.route('/', (evt, ctx, cb) => cb(null, 'Hello, Node!'))
-.route('/billing', billngReportHandler)
-.route('/kanban', kanbanReportHandler)
-.route('/fba-a4', fbaA4ReportHandler)
-.route('/barcode-test', barcodeTestHandler)
-.run({});
+let debug = false;
+
+for (const arg of process.argv) {
+    if (arg === '--debug') {
+        debug = true;
+    } else if (arg.startsWith('--handler=')) {
+        switch (arg.replace('--handler=', '')) {
+        case '/billing':
+            handler = billngReportHandler;
+            data = billngData;
+            break;
+        case '/kanban':
+            handler = kanbanReportHandler;
+            data = kanbanData;
+            break;
+        case '/fba-a4':
+            handler = fbaA4ReportHandler;
+            data = kanbanData;
+            break;
+        case '/barcode-test':
+            handler = barcodeTestHandler;
+            data = kanbanData;
+            break;
+        }
+    }
+}
+
+
+if (debug) {
+    handler(data, {} as any, (error, result) => {
+        if (error) {
+            console.log(error);
+        } else {
+            const fs = require('fs');
+            if (!fs.existsSync('./debug')) {
+                fs.mkdirSync('./debug');
+            }
+            fs.writeFileSync('./debug/index.html', result);
+        }
+    });
+} else {
+    App
+    .route('/', (evt, ctx, cb) => cb(null, 'Hello, Node!'))
+    .route('/billing', billngReportHandler)
+    .route('/kanban', kanbanReportHandler)
+    .route('/fba-a4', fbaA4ReportHandler)
+    .route('/barcode-test', barcodeTestHandler)
+    .run({});
+}
+
