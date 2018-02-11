@@ -16,6 +16,7 @@ import { Asset,
          Script,
          Style }           from 'red-agate/modules/red-agate/bundler';
 import { query }           from 'red-agate/modules/red-agate/data';
+import { AwsLambda }       from './app';
 
 
 

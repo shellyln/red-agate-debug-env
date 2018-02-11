@@ -22,6 +22,8 @@ import { Font,
          Style }           from 'red-agate/modules/red-agate/bundler';
 import { SvgCanvas }       from 'red-agate-svg-canvas/modules/drawing/canvas/SvgCanvas';
 import { query }           from 'red-agate/modules/red-agate/data';
+import { AwsLambda,
+         App }             from './app';
 
 
 

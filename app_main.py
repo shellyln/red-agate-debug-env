@@ -44,6 +44,7 @@ if __name__ == '__main__':
     def run_report():
         with open('./src/examples/barcode.data.json') as f:
             data = json.loads(f.read())
+            data['eventName'] = '/barcode-test'
             return call_node_lambda(command=["node", "dist/app.js"], event=data)
 
     app.run(debug=True)
