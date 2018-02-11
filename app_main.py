@@ -16,8 +16,6 @@ def call_node_lambda(command=None, event=None, timeout=None):
         event_ = json.dumps(event_, separators=(',', ':'))
     with subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE) as proc:
         proc.stdin.write(event_.encode('UTF-8'))
-        proc.stdin.flush()
-        #proc.stdin.close()
         try:
             proc_status = -1
             (output, err) = proc.communicate(timeout=timeout)
