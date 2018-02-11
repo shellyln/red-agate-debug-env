@@ -22,7 +22,7 @@ def call_node_lambda(command=None, event=None, timeout=None):
             proc_status = -1
             (output, err) = proc.communicate(timeout=timeout)
             proc_status = proc.wait(timeout=0)
-        except TimeoutExpired:
+        except subprocess.TimeoutExpired:
             proc.kill()
             (output, err) = proc.communicate()
         if proc_status != 0:
