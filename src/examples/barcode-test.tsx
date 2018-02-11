@@ -49,10 +49,10 @@ export let barcodeTestHandler: AwsLambda = (event: any, context, callback) => Re
                 <Svg width={210 - 1} height={297 - 2} unit='mm' templateUrl='https://upload.wikimedia.org/wikipedia/commons/f/fd/Ghostscript_Tiger.svg'>
                     <If condition={designerMode}>
                         <Rect x={0} y={0} width={210} height={297} lineWidth={0.5} stroke/>
-                        <GridLine endX={210} endY={297} bleed={0} lineWidth={0.1} stroke/>
+                        <GridLine endX={210} endY={297} bleed={0} lineWidth={0.1} />
                     </If>
 
-                    <PrinterMarks x={15} y={20} width={100} height={130} hFold={[10, 20, 30]} vFold={[25, 15, 5]} />
+                    <PrinterMarks x={15} y={20} width={100} height={130} hFold={[10, 20, 30]} vFold={[25, 15, 5]} centerMarks={true} bleedMarks={true} />
 
                     <Qr x={15} y={5}
                         data="Hello" />
