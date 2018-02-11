@@ -59,6 +59,7 @@
   },
   "scripts": {
     "start": "run-s start:node",
+    "start2": "cat ./src/examples/barcode.data.json | node dist/app.js > ./debug/index.html",
     "start:web": "lite-server -c=bs-config.js",
     "start:node": "node dist/app.js",
     "clean": "run-s clean:esm clean:declarations clean:dist",
