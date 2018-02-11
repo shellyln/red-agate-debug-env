@@ -2,6 +2,7 @@
 
 import subprocess
 import sys
+import os
 import json
 
 
@@ -61,4 +62,5 @@ if __name__ == '__main__':
             event['eventName'] = '/billing'
             return call_node_lambda(command=["node", "dist/app.js"], event=event)
 
-    app.run(debug=True)
+    port = int(os.environ['PORT']) if os.environ.get('PORT') is not None else None
+    app.run(debug=True, port=port)
