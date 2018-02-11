@@ -43,8 +43,22 @@ if __name__ == '__main__':
     @app.route('/')
     def run_report():
         with open('./src/examples/barcode.data.json') as f:
-            data = json.loads(f.read())
-            data['eventName'] = '/barcode-test'
-            return call_node_lambda(command=["node", "dist/app.js"], event=data)
+            event = json.loads(f.read())
+            event['eventName'] = '/'
+            return call_node_lambda(command=["node", "dist/app.js"], event=event)
+
+    @app.route('/barcode')
+    def run_barcode_test_report():
+        with open('./src/examples/barcode.data.json') as f:
+            event = json.loads(f.read())
+            event['eventName'] = '/barcode-test'
+            return call_node_lambda(command=["node", "dist/app.js"], event=event)
+
+    @app.route('/billing')
+    def run_billing_report():
+        with open('./src/examples/barcode.data.json') as f:
+            event = json.loads(f.read())
+            event['eventName'] = '/billing'
+            return call_node_lambda(command=["node", "dist/app.js"], event=event)
 
     app.run(debug=True)

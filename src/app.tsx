@@ -30,6 +30,7 @@ const handler = barcodeTestHandler;
 
 
 App
+.route('/', (evt, ctx, cb) => cb(null, 'Hello, Node!'))
 .route('/billing', billngReportHandler)
 .route('/kanban', kanbanReportHandler)
 .route('/fba-a4', fbaA4ReportHandler)
