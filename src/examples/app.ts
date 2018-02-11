@@ -57,6 +57,17 @@ export class App {
         });
 
         process.stdin.on('end', () => {
+            const write = (data: string, exitCode: number) => {
+                const done = process.stdout.write(data);
+                if (done) {
+                    process.exit(exitCode);
+                } else {
+                    process.stdout.once('drain', () => {
+                        process.exit(exitCode);
+                    });
+                }
+            };
+
             try {
                 const event = JSON.parse(inputData);
 
@@ -74,16 +85,13 @@ export class App {
 
                 lambda_(event, context, (error, result) => {
                     if (error) {
-                        process.stdout.write(String(error));
-                        process.exit(-1);
+                        write(String(error), -1);
                     } else {
-                        process.stdout.write(result);
-                        process.exit(0);
+                        write(result, 0);
                     }
                 });
             } catch (e) {
-                process.stdout.write(String(e));
-                process.exit(-1);
+                write(String(e), -1);
             }
         });
     }
