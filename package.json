@@ -1,7 +1,7 @@
 {
   "name": "red-agate-debug-env",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "red-agate debug environment",
   "keywords": [],
   "main": "./bin/index.js",
@@ -14,10 +14,10 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "red-agate": "^0.0.7",
-    "red-agate-barcode": "^0.0.11",
-    "red-agate-svg-canvas": "^0.0.6",
-    "red-agate-util": "^0.0.6"
+    "red-agate": "^0.0.8",
+    "red-agate-barcode": "^0.0.12",
+    "red-agate-svg-canvas": "^0.0.7",
+    "red-agate-util": "^0.0.7"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.2",
