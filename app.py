@@ -52,4 +52,9 @@ if __name__ == '__main__':
             return call(command=["node", "dist/app.js"], event=event)
 
     port = int(os.environ['PORT']) if os.environ.get('PORT') is not None else None
-    app.run(debug=True, port=port)
+
+    # To debug with VSCode, set debug=True, use_debugger=False, use_reloader=False.
+    #   debug        - whether to enable debug mode and catch exceptions.
+    #   use_debugger - whether to use the internal Flask debugger.
+    #   use_reloader - whether to reload and fork the process on exception.
+    app.run(debug=True, use_debugger=False, use_reloader=False, port=port)
