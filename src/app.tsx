@@ -17,7 +17,7 @@ let handler = barcodeTestHandler;
 let data: any = kanbanData;
 
 
-App.cli(['--debug', '--handler=*'], (opts) => {
+App.cli(['?--foo', '--debug', '--handler=*'], (opts) => {
     switch (opts.get('--handler=*')) {
     case '/billing':
         handler = billngReportHandler;
