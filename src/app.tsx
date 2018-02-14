@@ -59,10 +59,13 @@ if (debug) {
     });
 } else {
     App
-    .route('/', (evt, ctx, cb) => cb(null, 'Hello, Node!'))
-    .route('/billing', billngReportHandler)
-    .route('/kanban', kanbanReportHandler)
-    .route('/fba-a4', fbaA4ReportHandler)
+    .route('/'            , (evt, ctx, cb) => cb(null, 'Hello, Node!'))
+    // .route('/billing'     , billngReportHandler)
+    // .route('/kanban'      , kanbanReportHandler)
+    // .route('/fba-a4'      , fbaA4ReportHandler)
+    .route('/billing'     , (evt, ctx, cb) => billngReportHandler(billngData, ctx, cb))
+    .route('/kanban'      , (evt, ctx, cb) => kanbanReportHandler(kanbanData, ctx, cb))
+    .route('/fba-a4'      , (evt, ctx, cb) =>  fbaA4ReportHandler(kanbanData, ctx, cb))
     .route('/barcode-test', barcodeTestHandler)
     .run({});
 }

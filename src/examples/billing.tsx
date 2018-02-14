@@ -148,12 +148,12 @@ export let billngReportHandler: AwsLambda = (event: BillingStatement, context, c
                                             <Do> { () => {
                                                 v.description = `${i + 1}: ${v.description}`;
                                                 v.description += ' 11111';
-                                                console.log(v.description);
+                                                // console.log(v.description);
                                             }}
                                             </Do>
                                             <Do> { () => {
                                                 v.description += ' 22222';
-                                                console.log(v.description);
+                                                // console.log(v.description);
                                             }}
                                             </Do>
                                             <tr>
