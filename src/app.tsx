@@ -17,38 +17,31 @@ let handler = barcodeTestHandler;
 let data: any = kanbanData;
 
 
-let debug = false;
-
-for (const arg of process.argv) {
-    if (arg === '--debug') {
-        debug = true;
-    } else if (arg.startsWith('--handler=')) {
-        switch (arg.replace('--handler=', '')) {
-        case '/billing':
-            handler = billngReportHandler;
-            data = billngData;
-            break;
-        case '/kanban':
-            handler = kanbanReportHandler;
-            data = kanbanData;
-            break;
-        case '/fba-a4':
-            handler = fbaA4ReportHandler;
-            data = kanbanData;
-            break;
-        case '/barcode-test':
-            handler = barcodeTestHandler;
-            data = kanbanData;
-            break;
-        }
+App.cli(['--debug', '--handler=*'], (opts) => {
+    switch (opts.get('--handler=*')) {
+    case '/billing':
+        handler = billngReportHandler;
+        data = billngData;
+        break;
+    case '/kanban':
+        handler = kanbanReportHandler;
+        data = kanbanData;
+        break;
+    case '/fba-a4':
+        handler = fbaA4ReportHandler;
+        data = kanbanData;
+        break;
+    case '/barcode-test':
+        handler = barcodeTestHandler;
+        data = kanbanData;
+        break;
+    default:
+        console.error('Invalid handler.');
+        break;
     }
-}
-
-
-if (debug) {
     handler(data, {} as any, (error, result) => {
         if (error) {
-            console.log(error);
+            console.error(error);
         } else {
             const fs = require('fs');
             if (!fs.existsSync('./debug')) {
@@ -57,16 +50,13 @@ if (debug) {
             fs.writeFileSync('./debug/index.html', result);
         }
     });
-} else {
-    App
-    .route('/'            , (evt, ctx, cb) => cb(null, 'Hello, Node!'))
-    // .route('/billing'     , billngReportHandler)
-    // .route('/kanban'      , kanbanReportHandler)
-    // .route('/fba-a4'      , fbaA4ReportHandler)
-    .route('/billing'     , (evt, ctx, cb) => billngReportHandler(billngData, ctx, cb))
-    .route('/kanban'      , (evt, ctx, cb) => kanbanReportHandler(kanbanData, ctx, cb))
-    .route('/fba-a4'      , (evt, ctx, cb) =>  fbaA4ReportHandler(kanbanData, ctx, cb))
-    .route('/barcode-test', barcodeTestHandler)
-    .run({});
-}
-
+})
+.route('/'            , (evt, ctx, cb) => cb(null, 'Hello, Node!'))
+// .route('/billing'     , billngReportHandler)
+// .route('/kanban'      , kanbanReportHandler)
+// .route('/fba-a4'      , fbaA4ReportHandler)
+.route('/billing'     , (evt, ctx, cb) => billngReportHandler(billngData, ctx, cb))
+.route('/kanban'      , (evt, ctx, cb) => kanbanReportHandler(kanbanData, ctx, cb))
+.route('/fba-a4'      , (evt, ctx, cb) =>  fbaA4ReportHandler(kanbanData, ctx, cb))
+.route('/barcode-test', barcodeTestHandler)
+.run({});
